@@ -4,23 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Markdown</title>
-    <link rel="stylesheet" href="https://noahscholfield.com/css/bootstrap-yeti.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha256-QUyqZrt5vIjBumoqQV0jM8CgGqscFfdGhN+nVCqX0vc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="css/md-editor.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script defer src="js/packs/solid.min.js"></script>
+    <script defer src="js/fontawesome.min.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="row" id="test">
-        <input type="file" accept="text/markdown, text/plain" @change="processFile($event)" class="form-control">
-        <a :href="downloadURL" class="btn btn-primary floating-btn" :download="fileInfo.name" title="Download you file" v-show="markdown.length > 0"><span class="glyphicon glyphicon-download"></span></a>
-        <div class="col-sm-6">
-          <textarea class="input" v-model="markdown"></textarea>
+      <div id="md-editor">
+        <div class="row">
+          <div class="col-sm-auto">
+            <button class="btn btn-primary" onclick="boxSelect.launchPopup()">Open from Box</button>
+          </div>
+          <div class="col-sm-auto">
+            <input id="file-input" type="file" accept="text/markdown, text/plain" @change="processFile($event)" class="form-control">
+          </div>
         </div>
-        <div class="col-sm-6 output" v-html="html"></div>
+        <a style="color: white;" v-show="markdown.length > 0" :href="downloadURL" class="btn btn-primary floating-btn" :download="fileInfo.name" title="Download you file" ><i class="fa fa-download"></i></a>
+        <div class="row">
+          <div class="col-sm-6">
+            <textarea class="input" v-model="markdown"></textarea>
+          </div>
+          <div class="col-sm-6 output markdown-body" v-html="html"></div>
+        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
+    <script src="https://cdn01.boxcdn.net/js/static/select.js"></script>
+    <script src="js/box.js"></script>
     <script src="js/md-editor.js"></script>
   </body>
 </html>

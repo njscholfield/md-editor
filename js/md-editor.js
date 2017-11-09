@@ -3,8 +3,8 @@ var md = markdownit({html: true});
 var reader = new FileReader();
 reader.onload = (event) => test.markdown = event.target.result;
 
-var test = new Vue({
-  el: '#test',
+var mdEditor = new Vue({
+  el: '#md-editor',
   data: {
     markdown: '',
     fileInfo: {},
