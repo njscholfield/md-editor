@@ -1,0 +1,16 @@
+.input {
+  height: calc(100vh - 3em);
+  width: 100%;
+  font-family: Inconsolata;
+}
+
+.output {
+  height: calc(100vh - 3em);
+  overflow-y: auto;
+}
+
+.floating-btn {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+}

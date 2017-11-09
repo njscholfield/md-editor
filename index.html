@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Markdown</title>
+    <link rel="stylesheet" href="https://noahscholfield.com/css/bootstrap-yeti.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="md-editor.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" id="test">
+        <input type="file" accept="text/markdown, text/plain" @change="processFile($event)" class="form-control">
+        <a :href="downloadURL" class="btn btn-primary floating-btn" :download="fileInfo.name" title="Download you file" v-show="markdown.length > 0"><span class="glyphicon glyphicon-download"></span></a>
+        <div class="col-sm-6">
+          <textarea class="input" v-model="markdown"></textarea>
+        </div>
+        <div class="col-sm-6 output" v-html="html"></div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
+    <script src="md-editor.js"></script>
+  </body>
+</html>
