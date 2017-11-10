@@ -16,11 +16,11 @@
     <div class="container">
       <div id="md-editor">
         <div class="row">
-          <div class="col-sm-auto">
+          <div class="col-sm-auto file-input">
             <button class="btn btn-primary" onclick="boxSelect.launchPopup()">Open from Box</button>
           </div>
-          <div class="col-sm-auto">
-            <input id="file-input" type="file" accept="text/markdown, text/plain" @change="processFile($event)" class="form-control">
+          <div class="col-sm-auto file-input">
+            <input type="file" accept="text/markdown, text/plain" @change="processFile($event)" class="form-control">
           </div>
         </div>
         <a style="color: white;" v-show="markdown.length > 0" :href="downloadURL" class="btn btn-primary floating-btn" :download="fileInfo.name" title="Download you file" ><i class="fa fa-download"></i></a>
