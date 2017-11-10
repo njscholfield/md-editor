@@ -33,6 +33,7 @@ var mdEditor = new Vue({
     },
     getKey(authCode) {
       var data = 'grant_type=authorization_code&code=' + authCode + '&client_id=vb8f29nn6lmoxqbzkoupa1bu533gnx2v&client_secret=H1dhjlHyWYISn1i8zQatW2OmPGzLCOBv';
+      console.log(data);
       fetch('https://api.box.com/oauth2/token', {method: 'POST', data: data, headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}, mode: 'cors'
       })
         .then(response => this.oauth = response.data)
