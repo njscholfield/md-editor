@@ -8,13 +8,14 @@ var mdEditor = new Vue({
   data: {
     markdown: '',
     fileInfo: {},
+    oauth: {}
   },
   computed: {
     html() {
       return md.render(this.markdown);
     },
     downloadURL() {
-      var data = new Blob([this.markdown], {type: 'text/plain'});
+      var data = new Blob([this.markdown], {type: 'text/markdown'});
       return window.URL.createObjectURL(data);
     }
   },
@@ -27,18 +28,33 @@ var mdEditor = new Vue({
       var uploadPath = 'https://upload.box.com/api/2.0/files/' + this.fileInfo.id + '/content';
       var form = new FormData();
       var file = new Blob([this.markdown], {type: 'text/markdown'});
-      form.append('content_modified_at', Date.now());
       form.append('file', file);
-      fetchPost(uploadPath, form);
+      fetchPost(uploadPath, form, this.oauth.access_token);
+    },
+    getKey(authCode) {
+      var data = {
+        grant_type: 'authorization_code',
+        code: authCode,
+        client_id: 'vb8f29nn6lmoxqbzkoupa1bu533gnx2v',
+        client_secret: 'H1dhjlHyWYISn1i8zQatW2OmPGzLCOBv'
+      };
+      fetch('https://api.box.com/oauth2/token', {method: 'POST', data: data})
+        .then(response => this.oauth = response.data)
+        .catch((error) => console.log(error));
     }
   }
 });
 
-function fetchPost(url, data) {
+function fetchPost(url, data, token) {
+  var headers = new Headers({
+    'Authorization': 'Bearer ' + token
+  });
   fetch(url, {
-    method: 'post',
-    body: data
+    method: 'POST',
+    body: data,
+    headers: headers,
+    mode: 'cors'
   })
-    .then((response) => console.log(response.data))
+    .then((response) => console.log(response))
     .catch((response) => console.log(response));
 }
