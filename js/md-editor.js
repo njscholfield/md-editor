@@ -24,7 +24,7 @@ var mdEditor = new Vue({
       reader.readAsText(event.target.files[0]);
     },
     uploadFileToBox() {
-      var uploadPath = `https://upload.box.com/api/2.0/files/${this.fileInfo.id}/content`;
+      var uploadPath = 'https://upload.box.com/api/2.0/files/' + this.fileInfo.id + '/content';
       var form = new FormData();
       var file = new Blob([this.markdown], {type: 'text/markdown'});
       form.append('content_modified_at', Date.now());
