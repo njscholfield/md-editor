@@ -36,7 +36,11 @@ var mdEditor = new Vue({
       fetch('https://api.box.com/oauth2/token', {method: 'POST', body: data, headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}, mode: 'cors'
       })
         .then(blob => blob.json())
-        .then(response => this.oauth = response.data)
+        .then(response => {
+          this.oauth = response.data;
+          console.log(response);
+          console.log(response.data);
+        })
         .catch((error) => console.log(error));
     }
   }
