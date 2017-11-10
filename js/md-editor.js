@@ -35,6 +35,7 @@ var mdEditor = new Vue({
       var data = 'grant_type=authorization_code&code=' + authCode + '&client_id=vb8f29nn6lmoxqbzkoupa1bu533gnx2v&client_secret=H1dhjlHyWYISn1i8zQatW2OmPGzLCOBv';
       fetch('https://api.box.com/oauth2/token', {method: 'POST', body: data, headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}, mode: 'cors'
       })
+        .then(blob => blob.json())
         .then(response => this.oauth = response.data)
         .catch((error) => console.log(error));
     }
@@ -51,6 +52,7 @@ function fetchPost(url, data, token) {
     headers: headers,
     mode: 'cors'
   })
+    .then(blob => blob.json())
     .then((response) => console.log(response))
     .catch((response) => console.log(response));
 }
