@@ -38,6 +38,12 @@ var mdEditor = new Vue({
         .then(blob => blob.json())
         .then(json => this.oauth = json)
         .catch((error) => console.log(error));
+    },
+    toggleReadMode() {
+      document.querySelector('#panel-left').classList.toggle('d-none');
+      document.querySelector('#panel-left').classList.toggle('col-md-6');
+      document.querySelector('#panel-right').classList.toggle('col-md-12');
+      document.querySelector('#panel-right').classList.toggle('col-md-6');
     }
   }
 });
